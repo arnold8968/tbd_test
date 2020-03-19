@@ -16,7 +16,7 @@ def get_container_list():  #get completed container
     container_list = []
     for line in container_status:
         tmp_status = line.split()
-#        print("tmp_status: ", tmp_status)
+        print("tmp_status: ", tmp_status)
         if tmp_status[-1] == 'minutes' or tmp_status[-1] == 'minute': #  when the contaienr status is "Up About a minute" or "Up xx minutes"
             container_list.append(tmp_status[0])
         else:
