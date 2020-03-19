@@ -94,8 +94,12 @@ def performance_manage(container_num, container_list, resource, usage_history):
         total_usg_record[container_list[i]].append(current_cpu)
 #        print("total_usg_record: ", total_usg_record)
 #        print("container_list[i]: ", container_list[i], i)
-        
-        current_performance = get_batch_time(container_list[i])[-1]
+        try:
+            current_performance = get_batch_time(container_list[i])[-1]
+        except:
+            print("index out of range")
+            time.sleep(10)
+            current_performance = get_batch_time(container_list[i])[-1]
 
         if container_list[i] in history_batch_time:
             if current_performance != history_batch_time[container_list[i]]:
