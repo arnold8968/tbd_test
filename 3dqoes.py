@@ -35,11 +35,13 @@ def get_container_list():  #get completed container
             if int(tmp_status[2]) > 40 and len(tmp_status) <= 4:
                 try:
                     _ =get_batch_time(tmp_status[0])[-1]
-                    container_list.append(tmp_status[0])
+                    #container_list.append(tmp_status[0])
                 except:
                     print("------------------")
                     print(tmp_status[0], "is not in get batch time")
                     pass
+                else:
+                    container_list.append(tmp_status[0])
 #                else:
 #                    container_list.append(tmp_status[0])
             
