@@ -35,10 +35,11 @@ def get_container_list():  #get completed container
             if int(tmp_status[2]) > 40 and len(tmp_status) <= 4:
                 try:
                     _ =get_batch_time(tmp_status[0])[-1]
+                    container_list.append(tmp_status[0])
                 except:
                     print("------------------")
                     print(tmp_status[0], "is not in get batch time")
-                    continue
+                    pass
 #                else:
 #                    container_list.append(tmp_status[0])
             
@@ -65,9 +66,9 @@ def get_batch_time(container_name):
     print("get batch time log: ", time_log)
     batch_time = time_log.splitlines()
     start_line = get_container_startline(container_name)
-    if len(time_log) == 0:
-        time.sleep(20)
-        get_batch_time(container_name)
+#    if len(time_log) == 0:
+#        time.sleep(20)
+#        get_batch_time(container_name)
     batch_time = batch_time[start_line+1:]
 #    print("function get_batch_time: ", batch_time)
     return batch_time
@@ -113,12 +114,12 @@ def performance_manage(container_num, container_list, resource, usage_history):
         total_usg_record[container_list[i]].append(current_cpu)
 #        print("total_usg_record: ", total_usg_record)
 #        print("container_list[i]: ", container_list[i], i)
-        try:
-            current_performance = get_batch_time(container_list[i])[-1]
-        except:
-            print("index out of range")
-            time.sleep(10)
-            current_performance = get_batch_time(container_list[i])[-1]
+#        try:
+        current_performance = get_batch_time(container_list[i])[-1]
+#        except:
+#            print("index out of range")
+#            time.sleep(10)
+#            current_performance = get_batch_time(container_list[i])[-1]
 
         if container_list[i] in history_batch_time:
             if current_performance != history_batch_time[container_list[i]]:
