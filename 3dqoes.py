@@ -31,10 +31,17 @@ def get_container_list():  #get completed container
 #        else:
         if tmp_status[-1] == 'minutes' or tmp_status[-1] == 'minute': #  when the contaienr status is "Up About a minute" or "Up xx minutes"
             container_list.append(tmp_status[0])
-#        else:
-#            if int(tmp_status[2]) > 40 and len(tmp_status) <= 4:  #when status is bigger than 40 seconds and not the "less than a second"
-#                container_list.append(tmp_status[0])
-    #    print("function get_container_list: ", container_list)
+        else:
+            if int(tmp_status[2]) > 40 and len(tmp_status) <= 4:
+                try:
+                    _ =get_batch_time(tmp_status[0])[-1]
+                except:
+                    print("------------------")
+                    print(tmp_status[0], "is not in get batch time")
+                    continue
+                else:
+                    container_list.append(tmp_status[0])
+            
         
     return container_list, len(container_list)
 
