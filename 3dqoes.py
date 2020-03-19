@@ -39,8 +39,8 @@ def get_container_list():  #get completed container
                     print("------------------")
                     print(tmp_status[0], "is not in get batch time")
                     continue
-                else:
-                    container_list.append(tmp_status[0])
+#                else:
+#                    container_list.append(tmp_status[0])
             
         
     return container_list, len(container_list)
